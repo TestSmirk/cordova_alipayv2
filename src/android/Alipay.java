@@ -17,7 +17,6 @@ public class Alipay extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, final CordovaArgs args, final CallbackContext callbackContext) {
-
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {

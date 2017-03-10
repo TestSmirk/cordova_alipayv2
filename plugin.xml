@@ -13,7 +13,7 @@
   <platform name="ios">
     <config-file parent="/widget" target="config.xml">
       <feature name="Alipay">
-        <param name="ios-package" value="MyAlipay"/>
+        <param name="ios-package" value="Alipay"/>
         <param name="onload" value="true"/>
       </feature>
     </config-file>
@@ -21,12 +21,12 @@
       <array>
         <dict>
           <key>CFBundleTypeRole</key>
-          <string>Editor</string>
+          <string>Alipay</string>
           <key>CFBundleURLName</key>
-          <string>alipayCordova</string>
+          <string>alipayCordovaPlugin</string>
           <key>CFBundleURLSchemes</key>
           <array>
-            <string>alipayCordova</string>
+            <string>alipayCordovaPlugin</string>
           </array>
         </dict>
       </array>
@@ -36,13 +36,6 @@
         <key>NSAllowsArbitraryLoads</key>
         <true/>
       </dict>
-    </config-file>
-    <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
-      <array>
-        <string>safepay</string>
-        <string>alipay</string>
-        <string>weixin</string>
-      </array>
     </config-file>
     <framework src="SystemConfiguration.framework"/>
     <framework src="CoreTelephony.framework"/>
@@ -57,12 +50,12 @@
     <framework src="libz.tbd"/>
     <framework custom="true" src="src/ios/libs/AlipaySDK.framework"/>
     <resource-file src="src/ios/libs/AlipaySDK.bundle"/>
+
     <source-file framework="true" src="src/ios/libcrypto.a"/>
     <source-file framework="true" src="src/ios/libssl.a"/>
-    <header-file src="src/ios/MyAlipay.h"/>
-    <source-file src="src/ios/MyAlipay.m"/>
-    <header-file src="src/ios/Order.h"/>
-    <source-file src="src/ios/Order.m"/>
+
+    <header-file src="src/ios/Alipay.h"/>
+    <source-file src="src/ios/Alipay.m"/>
   </platform>
   <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
@@ -80,7 +73,7 @@
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <!-- alipay sdk end -->
     </config-file>
-    <source-file src="src/android/Alipay.java" target-dir="src/com/plugin/alipay"/>
     <source-file src="src/android/libs/alipaySdk-20161222.jar" target-dir="libs"/>
+    <source-file src="src/android/Alipay.java" target-dir="src/com/plugin"/>
   </platform>
 </plugin>
