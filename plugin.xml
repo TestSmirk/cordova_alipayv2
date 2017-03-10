@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-plugin-alipay" version="0.0.1"
+        xmlns="http://apache.org/cordova/ns/plugins/1.0">
+  <name>AliPay</name>
+  <keywords>alipay</keywords>
+  <engines>
+    <engine name="cordova" version="&gt;=3.4.0"/>
+  </engines>
+  <description>支付宝支付插件,alipay</description>
+  <js-module name="alipay" src="www/alipay.js">
+    <clobbers target="navigator.alipay"/>
+  </js-module>
+  <platform name="ios">
+    <config-file parent="/widget" target="config.xml">
+      <feature name="Alipay">
+        <param name="ios-package" value="MyAlipay"/>
+        <param name="onload" value="true"/>
+      </feature>
+    </config-file>
+    <config-file parent="CFBundleURLTypes" target="*-Info.plist">
+      <array>
+        <dict>
+          <key>CFBundleTypeRole</key>
+          <string>Editor</string>
+          <key>CFBundleURLName</key>
+          <string>alipayCordova</string>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>alipayCordova</string>
+          </array>
+        </dict>
+      </array>
+    </config-file>
+    <config-file parent="NSAppTransportSecurity" target="*-Info.plist">
+      <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+      </dict>
+    </config-file>
+    <config-file parent="LSApplicationQueriesSchemes" target="*-Info.plist">
+      <array>
+        <string>safepay</string>
+        <string>alipay</string>
+        <string>weixin</string>
+      </array>
+    </config-file>
+    <framework src="SystemConfiguration.framework"/>
+    <framework src="CoreTelephony.framework"/>
+    <framework src="QuartzCore.framework"/>
+    <framework src="CoreText.framework"/>
+    <framework src="CoreGraphics.framework"/>
+    <framework src="UIKit.framework"/>
+    <framework src="Foundation.framework"/>
+    <framework src="CFNetwork.framework"/>
+    <framework src="CoreMotion.framework"/>
+    <framework src="libc++.tbd"/>
+    <framework src="libz.tbd"/>
+    <framework custom="true" src="src/ios/libs/AlipaySDK.framework"/>
+    <resource-file src="src/ios/libs/AlipaySDK.bundle"/>
+    <source-file framework="true" src="src/ios/libcrypto.a"/>
+    <source-file framework="true" src="src/ios/libssl.a"/>
+    <header-file src="src/ios/MyAlipay.h"/>
+    <source-file src="src/ios/MyAlipay.m"/>
+    <header-file src="src/ios/Order.h"/>
+    <source-file src="src/ios/Order.m"/>
+  </platform>
+  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Alipay">
+        <param name="android-package" value="com.plugin.Alipay"/>
+      </feature>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.INTERNET"/>
+      <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+      <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+      <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    </config-file>
+    <config-file target="AndroidManifest.xml" parent="/manifest/application">
+      <!-- alipay sdk end -->
+    </config-file>
+    <source-file src="src/android/Alipay.java" target-dir="src/com/plugin/alipay"/>
+    <source-file src="src/android/libs/alipaySdk-20161222.jar" target-dir="libs"/>
+  </platform>
+</plugin>
